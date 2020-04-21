@@ -1,8 +1,7 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { Navbar, NavbarBrand } from 'reactstrap';
-
+import Direcroty from './components/DirectoryComponent'
 function App() {
   return (
     <div className="App">
@@ -11,6 +10,7 @@ function App() {
           <NavbarBrand href="/">NuCampBrand</NavbarBrand>
         </div>
       </Navbar>
+      <Direcroty />
     </div>
   );
 }
