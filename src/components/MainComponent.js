@@ -7,6 +7,7 @@ import { PROMOTIONS } from "../shared/promotions";
 import Header from "./HeaderComponent";
 import Footer from "./FooterComponent";
 import Contact from "./ContactComponent";
+import About from "./AboutComponent"
 import CampsiteInfo from "./CampsiteInfoComponent";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Home from "./HomeComponent";
@@ -67,6 +68,7 @@ class Main extends Component {
             path="/directory/:campsiteId"
             component={CampsiteWithId}
           />
+          <Route path="/aboutus" render={() => <About partners={this.state.partners}/>} />
           } />
           <Redirect to="/home" />
         </Switch>
