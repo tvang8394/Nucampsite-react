@@ -13,7 +13,7 @@ import Home from "./HomeComponent";
 const mapStateToProps = state => {
   return {
     campsites: state.campsites,
-    comments: state.campsites,
+    comments: state.comments,
     partners: state.partners,
     promotions: state.promotions
   }
