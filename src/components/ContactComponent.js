@@ -98,7 +98,7 @@ class Contact extends Component {
     return (
       <div className="container">
         <div className="row">
-          <div className="col">
+          <div className="col-12">
             <Breadcrumb>
               <BreadcrumbItem>
                 <Link to="/home">Home</Link>
