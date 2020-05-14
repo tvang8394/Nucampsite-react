@@ -1,9 +1,12 @@
-import {createStore, combineReducers} from 'redux';
+import {createStore, combineReducers, applyMiddleware} from 'redux';
+import thunk from 'redux-thunk';
+import logger from 'redux-logger';
 import { Reducer, initialState } from './reducer';
 import { Campsites } from './campsites';
 import { Comments } from './comments';
 import { Promotions } from './promotions';
 import { Partners } from './partners';
+
 export const ConfigureStore = () => {
     const store = createStore(
         combineReducers({
@@ -12,7 +15,8 @@ export const ConfigureStore = () => {
             partners: Partners,
             promotions: Promotions
 
-        })
+        }),
+        applyMiddleware(thunk,logger)
     );
     return store;
 };
