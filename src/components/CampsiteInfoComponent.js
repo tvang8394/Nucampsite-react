@@ -17,9 +17,9 @@ import {
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import { LocalForm, Errors, Control } from "react-redux-form";
-import {Loading} from '../components/LoadingComponent';
-import { baseUrl } from '../shared/baseUrl';
-
+import { Loading } from "../components/LoadingComponent";
+import { baseUrl } from "../shared/baseUrl";
+import { FadeTransform, Fade, Stagger } from "react-animation-components";
 
 const minLength = (len) => (val) => val && val.length >= len;
 const maxLength = (len) => (val) => !val || val.length <= len;
@@ -28,12 +28,19 @@ const required = (val) => val && val.length;
 function RenderCampsite({ campsite }) {
   return (
     <div className="col-md-5 m-1">
-      <Card>
-        <CardImg top src={baseUrl + campsite.image} alt={campsite.name} />
-        <CardBody>
-          <CardText>{campsite.description}</CardText>
-        </CardBody>
-      </Card>
+      <FadeTransform
+        in
+        transformProps={{
+          exitTransform: "scale(0.5) translateY(50%)",
+        }}
+      >
+        <Card>
+          <CardImg top src={baseUrl + campsite.image} alt={campsite.name} />
+          <CardBody>
+            <CardText>{campsite.description}</CardText>
+          </CardBody>
+        </Card>
+      </FadeTransform>
     </div>
   );
 }
@@ -43,8 +50,10 @@ function RenderComments({ comments, postComment, campsiteId }) {
     return (
       <div className="col-md-5 m-1">
         <h4>Comments</h4>
+        <Stagger in>
         {comments.map((comment) => {
           return (
+            <Fade in key={comment.id}>
             <div key={comment.id}>
               <p>
                 {comment.text}
@@ -57,8 +66,10 @@ function RenderComments({ comments, postComment, campsiteId }) {
                 }).format(new Date(Date.parse(comment.date)))}
               </p>
             </div>
+            </Fade>
           );
         })}
+        </Stagger>
 
         <CommnetForm campsiteId={campsiteId} postComment={postComment} />
       </div>
@@ -69,8 +80,8 @@ function RenderComments({ comments, postComment, campsiteId }) {
 }
 
 function CampsiteInfo(props) {
-  if(props.isLoading){
-    return(
+  if (props.isLoading) {
+    return (
       <div className="container">
         <div className="row">
           <Loading />
@@ -78,8 +89,8 @@ function CampsiteInfo(props) {
       </div>
     );
   }
-  if(props.errMess) {
-    return(
+  if (props.errMess) {
+    return (
       <div className="container">
         <div className="row">
           <div className="col">
